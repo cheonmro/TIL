@@ -1,6 +1,8 @@
 # TIL
 Today I Learned..
 
+edit README.md for develop branch.
+
 저는 매일 어떤 내용을 학습한 뒤에, 항상(하루에 한 번 이상) commit을 하겠습니다.
 
 ## FrontEnd
