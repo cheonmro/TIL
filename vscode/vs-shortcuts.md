@@ -58,6 +58,25 @@
 
 <br>
 
+## Run code
+- Ctrl + alt + n
+
+
+<br>
+
+
+## html에서 여러 태그의 속성 등을 동시에 입력
+- 마우스를 갖다 대고, alt를 누른 뒤, 동시에 입력하고 싶은 곳을 마우스 커서 이동
+```
+<a href="">
+<a href="">
+<a href="">
+<a href="">
+```
+
+
+<br>
+
 # Settings에서 shortcuts 세팅 가능
 
 ## html에서 연산 자동 계산()
