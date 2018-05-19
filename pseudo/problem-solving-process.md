@@ -34,16 +34,17 @@
 1. 문제인지: array의 모든 element의 합을 구해야한다.
 
 2. 문제분해: array의 각 element에 접근해서 총합을 구한다.
-	1. 총합 sum = 0을 선언한다.
-	2. array의 element가 없다면?
-		1. sum을 리턴한다.
-	3. array의 element가 존재한다면?
-    1. 반복문을 이용해서 sum에 첫 element(i = 0)부터 마지막 element(array.length-1)까지 모두 더한다. 
-    2. sum을 리턴한다.
+    1. 총합 sum = 0을 선언한다.
+    2. array의 element가 없다면?
+        1. sum을 리턴한다.
+    3. array의 element가 존재한다면?
+        1. 반복문을 이용해서 sum에 첫 element(i = 0)부터 마지막 element(array.length-1)까지 모두 더한다. 
+        2. sum을 리턴한다.
 
 3. 패턴인지: array의 모든 element의 합을 구하려면, 반복문을 이용하면 구할 수 있다.
 
 4. 일반화/추상화: array의 모든 element의 합은 반복문을 통해 {{i번째 element}}에 접근하여 그 값을 {{sum}}에 쌓음으로써 구현한다.
+
 ```
 
 <br>
