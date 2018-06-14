@@ -9,7 +9,7 @@ function nextSqaure(n){
   }
   var square = Math.sqrt(n); // 11 (n = 121)
   if(Number.isInteger(square)) {
-    return (square + 1)*(square + 1);
+    return (square + 1)*(square + 1); // Math.pow(square + 1, 2): square + 1의 제곱
   } else {
     return 'no';
   }
