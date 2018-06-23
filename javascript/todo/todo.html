@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Todo Application</title>
+</head>
+<body>
+  <input type="text" placeholder="enter code">
+  <button class="add-btn">Add</button>
+
+  <ul></ul>
+
+  <script>
+
+    // Get DOM object
+    var list = document.querySelector('ul');
+    var addBtn = document.querySelector('.add-btn');
+    var toDoInput = document.querySelector('input');
+
+
+    // After browser is 'load'ed, it will display data
+    function generateHTML () {
+      todos.forEach(function (todo) {
+        // var checked = todo.completed ? checked : '';
+        list.innerHTML += '<li>' + '<input type="checkbox"' + checked(todo) + '>' + '<span>' + todo.content + '</span>' + ' <button>del</button>' + '</li>';
+      });
+    };
+
+    // Add todo(new todo by clicking Add button) to todos(object) & display todo in browser
+    function addTodo() {
+
+      // to todos(object)
+
+      // Find the last number id to add new id after the last one
+
+      // array for todo.id
+      var ids = todos.map(function (todo) {
+        return todo.id;
+      });
+      // Find the last number id
+      var lastId = Math.max.apply(null, ids);
+
+
+      // Create new todo for adding to todos
+      var newTodo = {
+        id: lastId + 1,
+        content: toDoInput.value,
+        completed: false
+      };
+
+      // Add new todo to todos
+      var addTodos = todos.concat(newTodo);
+      console.log(addTodos);
+
+
+      // display todo in browser
+      list.innerHTML += '<li>' + '<input type="checkbox"' + checked(newTodo) + '>' + '<span>' + newTodo.content + '</span>' + ' <button>del</button>' + '</li>';
+    }
+
+    // check box
+    function checked(todo) {
+      var checked = todo.completed ? checked : '';
+      return checked;
+    }
+
+    // When clicking the Add button
+    addBtn.addEventListener('click', function () {
+      addTodo();
+      toDoInput.value = '';
+    });
+
+    // When using only 'enter' keyboard
+    toDoInput.addEventListener('keyup', function (e) {
+      // 'enter' keyboard keycode is 13
+      if(e.keyCode !== 13) return;
+      addTodo();
+      toDoInput.value = '';
+
+    })
+
+    // When browser(tab) 'load' is finished
+    window.addEventListener('load', function() {
+
+      // Suppose that browser has already received data from server
+      todos = [
+        { id: 1, content: 'HTML', completed: true },
+        { id: 2, content: 'CSS', completed: false },
+        { id: 300, content: 'JS', completed: true },
+        { id: 4, content: 'Angulae', completed: false }
+      ];
+      
+      generateHTML();
+
+    });
+    
+  </script>
+</body>
+</html>
