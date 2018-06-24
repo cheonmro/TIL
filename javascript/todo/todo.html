@@ -30,9 +30,12 @@
 
 
     // Add todo(new todo by clicking Add button) to todos(object) & display todo in browser
-    function addTodo() {
+    function addTodo(todo) {
+      // if empty input value, nothing return
+      if(!todo) return;
 
-      // to todos(object)
+
+      // Add to todos(object)
 
       // Find the last number id to add new id after the last one
 
@@ -52,9 +55,8 @@
       };
 
       // Add new todo to todos
-      var addTodos = todos.concat(newTodo);
-      console.log(addTodos);
-
+      todos = todos.concat(newTodo);
+      console.log(todos);
 
       // display todo in browser
       list.innerHTML += '<li>' + '<input type="checkbox"' + checked(newTodo) + '>' + '<span>' + newTodo.content + '</span>' + ' <button>del</button>' + '</li>';
@@ -69,7 +71,7 @@
 
     // When clicking the Add button
     addBtn.addEventListener('click', function () {
-      addTodo();
+      addTodo(toDoInput.value);
       toDoInput.value = '';
     });
 
@@ -78,15 +80,16 @@
     toDoInput.addEventListener('keyup', function (e) {
       // 'enter' keyboard keycode is 13
       if(e.keyCode !== 13) return;
-      addTodo();
+      addTodo(toDoInput.value);
       this.value = '';
     });
 
 
     // When clicking the 'del' button
     list.addEventListener('click', function(e) {
+      if(e.target.nodeName !== 'BUTTON' && e.target.nodeName !== 'INPUT') return;
 
-      // When clicking only button
+      // When clicking button
       if(e.target.nodeName === 'BUTTON') {
         // Remove the todo that its id is same as event target parentNode id(1 === '1')
         todos = todos.filter(function(todo) {
@@ -96,8 +99,15 @@
         // In browser, remove the todo <li> removed from todos above
         this.removeChild(e.target.parentNode);
       };
-      console.log(todos);
 
+      // When clicking checkbox
+      if(e.target.nodeName === 'INPUT') {
+        // If the checkbox is clicked, it will change todo.completed(false -> true / true -> false)
+        todos = todos.map(function (todo) {
+          return Object.assign({}, todo, { completed: todo.id === +e.target.parentNode.id ? !todo.completed : todo.completed });
+        })
+      };
+      console.log(todos);
 
     });
 
