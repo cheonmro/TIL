@@ -23,10 +23,11 @@
     // After browser is 'load'ed, it will display data
     function generateHTML () {
       todos.forEach(function (todo) {
-        // var checked = todo.completed ? checked : '';
-        list.innerHTML += '<li>' + '<input type="checkbox"' + checked(todo) + '>' + '<span>' + todo.content + '</span>' + ' <button>del</button>' + '</li>';
+        // Add todo.id to each <li> element -> ex) '1'
+        list.innerHTML += '<li id="' + todo.id + '">' + '<input type="checkbox"' + checked(todo) + '>' + '<span>' + todo.content + '</span>' + ' <button>del</button>' + '</li>';
       });
     };
+
 
     // Add todo(new todo by clicking Add button) to todos(object) & display todo in browser
     function addTodo() {
@@ -59,11 +60,12 @@
       list.innerHTML += '<li>' + '<input type="checkbox"' + checked(newTodo) + '>' + '<span>' + newTodo.content + '</span>' + ' <button>del</button>' + '</li>';
     }
 
+
     // check box
     function checked(todo) {
-      var checked = todo.completed ? checked : '';
-      return checked;
+      return todo.completed ? checked : '';
     }
+
 
     // When clicking the Add button
     addBtn.addEventListener('click', function () {
@@ -71,14 +73,34 @@
       toDoInput.value = '';
     });
 
+
     // When using only 'enter' keyboard
     toDoInput.addEventListener('keyup', function (e) {
       // 'enter' keyboard keycode is 13
       if(e.keyCode !== 13) return;
       addTodo();
-      toDoInput.value = '';
+      this.value = '';
+    });
 
-    })
+
+    // When clicking the 'del' button
+    list.addEventListener('click', function(e) {
+
+      // When clicking only button
+      if(e.target.nodeName === 'BUTTON') {
+        // Remove the todo that its id is same as event target parentNode id(1 === '1')
+        todos = todos.filter(function(todo) {
+          return todo.id !== +e.target.parentNode.id;
+          
+        });
+        // In browser, remove the todo <li> removed from todos above
+        this.removeChild(e.target.parentNode);
+      };
+      console.log(todos);
+
+
+    });
+
 
     // When browser(tab) 'load' is finished
     window.addEventListener('load', function() {
@@ -92,6 +114,8 @@
       ];
       
       generateHTML();
+
+      console.log(todos);
 
     });
     
