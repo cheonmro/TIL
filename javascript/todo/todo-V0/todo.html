@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Todo Application</title>
+  <title>Todo V0</title>
 </head>
 <body>
   <input type="text" placeholder="enter code">
@@ -12,12 +12,17 @@
 
   <ul></ul>
 
+<!-- <button class="select-btn">Select All</button> -->
+
   <script>
 
     // Get DOM object
     var list = document.querySelector('ul');
     var addBtn = document.querySelector('.add-btn');
     var toDoInput = document.querySelector('input');
+    // var selectBtn = document.querySelector('.select-btn');
+    // var toDoCheck = document.querySelector('.check');
+    // console.log(toDoCheck);
 
 
     // After browser is 'load'ed, it will display data
@@ -68,6 +73,17 @@
       return todo.completed ? checked : '';
     }
 
+    // <input type="checkbox"' + 'class="check"' + checked(newTodo) + '> - > class="check"??
+
+    // function toggle(todo) {
+    //   console.log('todo');
+    //   // console.log(list);
+    //   console.log(list.childNodes.length);
+    //   // for(var i = 0; i < list.childNodes.length; i++) {
+    //     document.querySelector('li input').checked = true;
+    //   // }
+    // }
+
 
     // When clicking the Add button
     addBtn.addEventListener('click', function () {
@@ -111,6 +127,18 @@
 
     });
 
+    // When clicking 'Select All' button
+    // selectBtn.addEventListener('click', function () {
+    //   // Change all todo.completed to true
+    //   todos = todos.map(function (todo) {
+    //     return Object.assign({}, todo, { completed: true });
+    //   })
+    //   console.log(todos);
+
+    //   todos.forEach(function (todo) {
+    //     toggle(todo);
+    //   })
+    // })
 
     // When browser(tab) 'load' is finished
     window.addEventListener('load', function() {
