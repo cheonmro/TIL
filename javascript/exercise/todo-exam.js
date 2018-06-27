@@ -50,13 +50,44 @@ var todos = [
 //   { id: 2, content: 'CSS', completed: true },
 //   { id: 1, content: 'Javascript', completed: false }
 // ];
-  var completedValue;
-  todos.forEach(function (item) {
-      if (item.id === 3) completedValue = item.completed;
-  });
-  console.log(completedValue); // false
-  console.log(todos);
+  // var completedValue;
+  // todos.forEach(function (item) {
+  //     if (item.id === 3) item.completed = !item.completed;
+  // });
+  // // console.log(item.completed); // false
+  // console.log(todos);
 
+  // forEach는 답은 나오나, 원본을 바꾸기 때문에, map을 사용한다.
+  // forEach는 값을 바꿀 때는 사용하지 말고, 그 값을 활용하여 뭔가 할 때 사용
+
+  // 프로퍼티의 일부 값을 바꿀 때는 Object.assign 이게 좋다.
+  var reverse = todos.map(function (todo) {
+    return Object.assign({}, todo, { completed: todo.id === 3 ? !todo.completed : todo.completed });
+  })
+  console.log(todos);
+  console.log(reverse);
+
+
+// 6. todos에서 모든 요소의 completed 프로퍼티 값을 true로 설정하는 함수를 작성하라
+// todos = [
+//   { id: 3, content: 'HTML', completed: true },
+//   { id: 2, content: 'CSS', completed: true },
+//   { id: 1, content: 'Javascript', completed: true }
+// ];
+
+var trueTodos = todos.map(function (todo) {
+  return Object.assign({}, todo, { completed: true });
+})
+console.log(trueTodos);
+
+
+
+// 7. todos에서 완료(completed: true)한 할일의 갯수를 구하는 함수를 작성하라
+
+var numTodos = todos.filter(function (todo) {
+  return todo.completed === true
+}).length;
+console.log(numTodos);
 
 
   // 참고 사항
